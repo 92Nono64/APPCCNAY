@@ -147,15 +147,13 @@
     <div class="section-separator">📅 Au Programme</div>
     
     <div class="news-card">
-        <span class="news-date" style="background:#e3f2fd; color:#1976d2;"Date prochainement</span>
+        <span class="news-date" style="background:#e3f2fd; color:#1976d2;">Date prochainement</span>
         <h3 class="news-title">La 300% 2026</h3>
         <div class="news-content">
             <p><strong>Défi solidaire MICI / Maladie de Crohn.<br>
-            <strong>Horaires :</strong> à partir de 7h00 jusqu'à 9h00 à l'office du tourisme de NAY.</p>
-            <p></strong> Boucles : 45, 79 et 109 km.</p>
+            <strong>Horaires :</strong> à partir de 7h00 jusqu'à 9h00 à l'office du tourisme de NAY.</strong></p>
+            <p>Boucles : 45, 79 et 109 km.</p>
            <a href="https://cercle-cyclotouriste-nayais.s2.yapla.com/fr/event-104271" class="btn-link">S'inscrire au défi</a>
-        </div>
-            </div>
         </div>
     </div>
 
@@ -214,6 +212,14 @@
     <div style="text-align: center; margin-bottom: 30px;"><h2 style="color:var(--primary);">📰 Gazette du Guidon</h2></div>
     <ul class="newsletter-list">
         <li class="newsletter-item">
+            <div class="nl-info"><strong>Avril 2026</strong><span>30/04/2026</span></div>
+            <a href="https://cdn.eu.yapla.com/company/CPYSmiRO92lagoV7GubI1LxC3/asset/files/Newsletter_Avril_2026%20_Opt.pdf" target="_blank" class="btn-read">Lire PDF</a>
+        </li>
+        <li class="newsletter-item">
+            <div class="nl-info"><strong>Mars 2026</strong><span>27/03/2026</span></div>
+            <a href="https://cdn.eu.yapla.com/company/CPYSmiRO92lagoV7GubI1LxC3/asset/files/Newsletter_Mars_2026_Opt.pdf" target="_blank" class="btn-read">Lire PDF</a>
+        </li>
+        <li class="newsletter-item">
             <div class="nl-info"><strong>Février 2026</strong><span>27/02/2026</span></div>
             <a href="https://cdn.eu.yapla.com/company/CPYSmiRO92lagoV7GubI1LxC3/asset/files/Newsletter_F%C3%A9vrier_2026_liens_Op.pdf" target="_blank" class="btn-read">Lire PDF</a>
         </li>
@@ -262,7 +268,7 @@
 </nav>
 
 <script>
-// --- DONNÉES CATALOGUE (TOUS LES PARCOURS) ---
+// --- DONNÉES CATALOGUE ---
 const routes = [
   {id:"001", z:"Nord", d1:"56km", d2:"49km", u:"https://www.visugpx.com/iGnthdT0l9", t1:"Nay, Mirepeix, Lagos, Espoey, Lourenties, Arrien, Espéchède, Ouillon, Serre-Morlaas, Ousse, Assat, Baliros, Arros-Nay, Nay", t2:"Soumoulou, Limendous, Andoins, Serre-Morlaas et retour commun"},
   {id:"002", z:"Nord", d1:"72km", d2:"61km", u:"https://www.visugpx.com/t6RjuRPcRM", t1:"Nay, Baudreix, Angaïs, Ousse, Morlaas, St Jammes, Gabaston, Sedzére, Arrien, Gardéres, Luquet, Espoey, Lagos, Bois de Lagos, Bénéjacq, Coarraze, Nay", t2:"Andoins, Espoey et itinéraire commun"},
@@ -386,7 +392,7 @@ function display(list) {
             <div class="card-header bg-${r.z}"><span>#${r.id}</span><span>${r.z.toUpperCase()}</span></div>
             <div id="map-${r.id}" class="map-container"></div>
             <div class="card-body">
-                <div class="badges"><span class="badge">🏁 ${r.d1}</span>${r.d2 ? `<span class="badge">🏁 ${r.d2}</span>`:''}</div>
+                <div class="badges"><span class="badge">🏁 ${r.d1}</span>${r.d2 && r.d2 !== '-' ? `<span class="badge">🏁 ${r.d2}</span>`:''}</div>
                 <div class="trace-row"><span class="trace-label">Aller:</span> ${r.t1}</div>
                 <div class="trace-row"><span class="trace-label">Retour:</span> ${r.t2}</div>
             </div>
@@ -442,14 +448,13 @@ function loadLicence() {
         document.getElementById('licence-container').classList.add('has-file');
         document.getElementById('licence-empty-state').style.display='none';
         document.getElementById('btn-delete-licence').style.display='flex';
-        if(t.includes('pdf')) { document.getElementById('licence-pdf-preview').style.display='block'; document.getElementById('licence-pdf-preview').src = d; }
+        if(t && t.includes('pdf')) { document.getElementById('licence-pdf-preview').style.display='block'; document.getElementById('licence-pdf-preview').src = d; }
         else { document.getElementById('licence-img-preview').style.display='block'; document.getElementById('licence-img-preview').src = d; }
     }
 }
 
 function deleteLicence() { if(confirm("Supprimer la licence ?")) { localStorage.removeItem('ccn_licence_data'); location.reload(); } }
 function saveContact() { localStorage.setItem('ice', document.getElementById('ice-input').value); alert("Sauvegardé"); loadICE(); }
-function deleteContact() { localStorage.removeItem('ice'); loadICE(); }
 function loadICE() {
     const n = localStorage.getItem('ice');
     const b = document.getElementById('btn-call-ice');
@@ -459,7 +464,4 @@ function loadICE() {
 document.addEventListener('DOMContentLoaded', () => { display(routes); loadLicence(); loadICE(); });
 </script>
 </body>
-
 </html>
-
-
